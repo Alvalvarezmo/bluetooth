@@ -38,7 +38,6 @@ export class HomePage {
 
   }
 
-
 //For now we enable bluetooth out of the app, check that this procedure was done
   checkBluetoothEnable(){
     this.bluetoothSerial.isEnabled().then(success => {
