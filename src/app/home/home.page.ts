@@ -21,7 +21,7 @@ let iBloodPressure = {
 
 //Data read from the buffer
 let dataRead = new Uint8Array();
-
+let prueba = "Hola";
 
 @Component({
   selector: 'app-home',
@@ -32,7 +32,11 @@ let dataRead = new Uint8Array();
 
 export class HomePage {
 
-  constructor( private bluetoothSerial: BluetoothSerial, private alertCtrl:AlertController, private toastCtrl: ToastController ) {}
+  constructor( private bluetoothSerial: BluetoothSerial, private alertCtrl:AlertController, private toastCtrl: ToastController ) {
+    prueba = "Adios";
+    this.checkBluetoothEnable();
+
+  }
 
 
 //For now we enable bluetooth out of the app, check that this procedure was done
@@ -53,8 +57,9 @@ export class HomePage {
     this.bluetoothSerial.isConnected(). then(success => {
       console.log(success);
       this.showToast('Connected with device');
-      this.bluetoothSerial.subscribeRawData().subscribe((dt) => {
-        console.log('asdasdasd');
+      this.bluetoothSerial.subscribeRawData().subscribe((data) => {
+        console.log("Data:", data);
+        dataRead = data;
       });      
     }, error => {
       console.log(error);
